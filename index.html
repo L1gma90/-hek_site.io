@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Т — Перезагрузка</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+    <div class="glow-sphere sphere-1"></div>
+    <div class="glow-sphere sphere-2"></div>
+
+    <header class="header">
+        <a href="#" class="logo">т.интерфейс</a>
+        <div class="time-tag">Log: 2026 // Active</div>
+        <button class="action-trigger">Выпустить</button>
+    </header>
+
+    <main class="main-grid">
+        
+        <div class="grid-item title-box">
+            <h1>Меньше слов.<br>Больше <span class="text-stroke">цифры</span>.</h1>
+            <p class="manifesto">
+                Мы убрали из банкинга всё лишнее. Оставили только чистую скорость, прозрачный кэшбэк и тяжелый пластик, который приятно держать в руках. Без скрытых условий.
+            </p>
+        </div>
+
+        <div class="grid-item visual-box">
+            <model-viewer
+                src="card.glb" 
+                camera-controls
+                auto-rotate
+                interaction-prompt="none"
+                shadow-intensity="0"
+                exposure="1.5"
+                camera-orbit="45deg 55deg 100%"
+                disable-zoom>
+            </model-viewer>
+        </div>
+
+        <div class="grid-item info-card-large">
+            <span class="card-num">01</span>
+            <h3>Честные 15% на всё, что важно</h3>
+            <p>Вы сами выбираете четыре категории кэшбэка каждый месяц. Возвращаем реальными деньгами на счет, а не виртуальными фантиками.</p>
+        </div>
+
+        <div class="grid-item info-card-small">
+            <span class="card-num">02</span>
+            <h3>Инфраструктура</h3>
+            <p>Переводы по СБП без лимитов. Внутри экосистемы — мгновенно и бесплатно.</p>
+        </div>
+
+    </main>
+
+</body>
+</html>
