@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Т — Перезагрузка</title>
+    <title>Т — Архитектура Возможностей</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Inter:wght@400;500;600&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
@@ -16,15 +16,19 @@
 
     <div class="glow-sphere sphere-1 parallax" data-speed="-2"></div>
     <div class="glow-sphere sphere-2 parallax" data-speed="3"></div>
+    <div class="glow-sphere sphere-3 parallax" data-speed="1.5"></div>
 
     <header class="header">
         <a href="#" class="logo">т.интерфейс</a>
-        <div class="time-tag">Log: 2026 // Active</div>
+        <nav class="nav-menu">
+            <a href="#features">Продукт</a>
+            <a href="#rates">Тарифы</a>
+            <a href="#ecosystem">Экосистема</a>
+        </nav>
         <button class="action-trigger">Выпустить</button>
     </header>
 
-    <main class="main-grid">
-        
+    <section id="hero" class="main-grid">
         <div class="grid-item title-box">
             <h1>Меньше слов.<br>Больше <span class="text-stroke">цифры</span>.</h1>
             <p class="manifesto">
@@ -34,7 +38,6 @@
 
         <div class="grid-item visual-box">
             <model-viewer
-                id="main-card"
                 src="card.glb" 
                 camera-controls
                 auto-rotate
@@ -42,10 +45,12 @@
                 shadow-intensity="0"
                 exposure="1.5"
                 bounds="tight"
-                alt="3D Банковская карта">
+                alt="3D Карта">
             </model-viewer>
         </div>
+    </section>
 
+    <section id="features" class="main-grid section-margin">
         <div class="grid-item info-card-large interactive-hover">
             <span class="card-num">01</span>
             <div class="card-text-content">
@@ -79,8 +84,59 @@
             </div>
             <div class="glow-line"></div>
         </div>
+    </section>
 
-    </main>
+    <section id="rates" class="main-grid section-margin">
+        <div class="grid-item rate-card rate-black interactive-hover">
+            <div class="rate-header">
+                <span class="rate-badge">Default</span>
+                <h2>Т.Пластик</h2>
+            </div>
+            <p class="rate-price">0 ₽<span>/мес</span></p>
+            <ul class="rate-features">
+                <li>Обслуживание всегда бесплатное</li>
+                <li>Кэшбэк до 15% в выбранных категориях</li>
+                <li>Снятие наличных в любых банкоматах</li>
+            </ul>
+            <div class="glow-line"></div>
+        </div>
+
+        <div class="grid-item rate-card rate-premium interactive-hover">
+            <div class="rate-header">
+                <span class="rate-badge premium-badge">Titanium</span>
+                <h2>Т.Премиум</h2>
+            </div>
+            <p class="rate-price">1 990 ₽<span>/мес</span></p>
+            <ul class="rate-features">
+                <li>Выделенная линия поддержки 24/7</li>
+                <li>Повышенный процент на остаток и вклады</li>
+                <li>Бесплатный доступ в бизнес-залы аэропортов</li>
+            </ul>
+            <div class="glow-line"></div>
+        </div>
+    </section>
+
+    <section id="ecosystem" class="main-grid section-margin footer-buffer">
+        <div class="grid-item ecosystem-visual">
+            <model-viewer
+                src="device.glb" 
+                auto-rotate
+                camera-controls
+                interaction-prompt="none"
+                shadow-intensity="0"
+                exposure="1.3"
+                bounds="tight"
+                disable-zoom>
+            </model-viewer>
+        </div>
+
+        <div class="grid-item ecosystem-text">
+            <span class="card-num">// Контур безопасности</span>
+            <h2>Единый цифровой ключ</h2>
+            <p>Это больше, чем карта. Это терминал доступа к инвестициям, мобильной связи нового поколения и защищенным сейфам для хранения активов. Начните кастомизацию своего пространства уже сегодня.</p>
+            <button class="cta-pulse-button">Запустить процесс</button>
+        </div>
+    </section>
 
     <script>
         document.addEventListener("mousemove", (e) => {
