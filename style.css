@@ -1,4 +1,4 @@
-/* Сброс стилей */
+/* Базовый сброс */
 * {
     margin: 0;
     padding: 0;
@@ -26,7 +26,46 @@ body {
     position: relative;
 }
 
-/* Навигационное меню в шапке */
+/* Элементы заднего плана */
+.glow-sphere {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,221,45,0.04) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(90px);
+    z-index: 0;
+    pointer-events: none;
+    transition: transform 0.1s ease-out;
+}
+.sphere-1 { top: -100px; right: -50px; }
+.sphere-2 { top: 900px; left: -150px; }
+.sphere-3 { bottom: 0px; right: 100px; background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, rgba(0,0,0,0) 70%); }
+
+/* Шапка сайта */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 4%;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 100;
+    background: rgba(10, 10, 12, 0.7);
+    backdrop-filter: blur(20px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.logo {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 16px;
+    color: var(--text-white);
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
 .nav-menu {
     display: flex;
     gap: 32px;
@@ -37,53 +76,11 @@ body {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.3s;
 }
 
 .nav-menu a:hover {
     color: var(--text-white);
-}
-
-/* Параллакс-сферы с плавным движением */
-.glow-sphere {
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,221,45,0.05) 0%, rgba(0,0,0,0) 70%);
-    filter: blur(90px);
-    z-index: 0;
-    pointer-events: none;
-    transition: transform 0.1s ease-out;
-}
-.sphere-1 { top: -200px; right: -100px; }
-.sphere-2 { top: 1200px; left: -200px; }
-.sphere-3 { bottom: -200px; right: 200px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%); }
-
-/* Шапка */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 32px 4%;
-    border-bottom: 1px solid var(--border-color);
-    z-index: 10;
-    position: relative;
-    background: rgba(10, 10, 12, 0.5);
-    backdrop-filter: blur(20px);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.logo {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 18px;
-    color: var(--text-white);
-    text-decoration: none;
-    text-transform: lowercase;
-    letter-spacing: -0.5px;
 }
 
 .time-tag {
@@ -96,43 +93,39 @@ body {
     background: transparent;
     color: var(--text-white);
     border: 1px solid var(--text-white);
-    padding: 12px 24px;
+    padding: 10px 20px;
     border-radius: 100px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: all 0.3s ease;
 }
 
 .action-trigger:hover {
     background: var(--text-white);
     color: var(--bg-dark);
-    transform: scale(1.05);
 }
 
-/* Сетка Grid */
-.main-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 24px;
+/* Главный контейнер-обертка */
+.page-wrapper {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 4%;
+    padding: 160px 4% 120px 4%; /* Верхний отступ защищает от наплыва шапки */
+    display: flex;
+    flex-direction: column;
+    gap: 120px; /* Жесткий зазор между всеми крупными блоками */
     position: relative;
     z-index: 5;
 }
 
-#hero {
-    padding-top: 180px;
+/* Сетка для блоков */
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+    width: 100%;
 }
 
-.section-margin {
-    margin-top: 120px;
-}
-
-.footer-buffer {
-    padding-bottom: 140px;
-}
-
+/* Стили карточек (Grid-элементов) */
 .grid-item {
     background: rgba(255, 255, 255, 0.01);
     border: 1px solid var(--border-color);
@@ -164,7 +157,7 @@ body {
     transform: scaleX(1);
 }
 
-/* Блок главного текста */
+/* Блок 1: Главный текст */
 .title-box {
     grid-column: span 7;
     background: transparent;
@@ -177,10 +170,10 @@ body {
 
 h1 {
     font-family: 'Unbounded', sans-serif;
-    font-size: 54px;
-    line-height: 1.1;
+    font-size: 52px;
+    line-height: 1.15;
     letter-spacing: -2px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 }
 
 .text-stroke {
@@ -189,36 +182,30 @@ h1 {
 }
 
 .manifesto {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.6;
     color: var(--text-gray);
-    max-width: 540px;
+    max-width: 500px;
 }
 
-/* Контейнеры для 3D */
+/* Блок 1: 3D Карта */
 .visual-box {
     grid-column: span 5;
-    height: 480px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: radial-gradient(circle at center, rgba(255,255,255,0.02) 0%, transparent 70%);
 }
 
-model-viewer {
+.visual-box model-viewer {
     width: 100%;
     height: 100%;
     outline: none;
-    --poster-color: transparent;
     background: transparent;
-    transition: transform 0.4s ease;
 }
 
-.visual-box:hover model-viewer {
-    transform: scale(1.03) rotate(-2deg);
-}
-
-/* Карточки Блока 2 */
+/* Блок 2: Карточки преимуществ */
 .info-card-large {
     grid-column: span 7;
     display: flex;
@@ -246,34 +233,39 @@ model-viewer {
     width: 100px;
     height: 100px;
     margin-top: -20px;
-    margin-right: -100px;
+    margin-right: -20px;
+}
+
+.coin-3d-wrapper model-viewer {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    background: transparent;
 }
 
 .card-num {
     font-family: 'Unbounded', sans-serif;
     font-size: 13px;
     color: var(--neon-yellow);
-    display: block;
 }
 
 .card-text-content {
-    margin-top: 30px;
+    margin-top: 24px;
 }
 
 h3 {
     font-family: 'Unbounded', sans-serif;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 12px;
-    letter-spacing: -0.5px;
 }
 
 p {
     color: var(--text-gray);
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.6;
 }
 
-/* БЛОК 3: Дизайнерские карточки тарифов */
+/* Блок 3: Карточки тарифов */
 .rate-card {
     grid-column: span 6;
     min-height: 380px;
@@ -284,7 +276,7 @@ p {
 
 .rate-card h2 {
     font-family: 'Unbounded', sans-serif;
-    font-size: 28px;
+    font-size: 26px;
     margin-top: 16px;
 }
 
@@ -299,7 +291,7 @@ p {
     font-size: 11px;
     text-transform: uppercase;
     padding: 4px 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 100px;
     color: var(--text-gray);
 }
@@ -307,20 +299,18 @@ p {
 .premium-badge {
     color: var(--neon-yellow);
     border-color: rgba(255, 221, 45, 0.3);
-    background: rgba(255, 221, 45, 0.02);
 }
 
 .rate-price {
     font-family: 'Unbounded', sans-serif;
-    font-size: 38px;
-    margin: 24px 0;
+    font-size: 36px;
+    margin: 20px 0;
 }
 
 .rate-price span {
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     color: var(--text-gray);
-    font-weight: 400;
 }
 
 .rate-features {
@@ -333,8 +323,8 @@ p {
     font-size: 14px;
     color: var(--text-gray);
     margin-bottom: 10px;
-    position: relative;
     padding-left: 20px;
+    position: relative;
 }
 
 .rate-features li::before {
@@ -344,13 +334,20 @@ p {
     color: var(--neon-yellow);
 }
 
-/* БЛОК 4: Экосистема */
+/* Блок 4: Экосистема */
 .ecosystem-visual {
     grid-column: span 5;
     height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.ecosystem-visual model-viewer {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    background: transparent;
 }
 
 .ecosystem-text {
@@ -363,63 +360,65 @@ p {
 
 .ecosystem-text h2 {
     font-family: 'Unbounded', sans-serif;
-    font-size: 40px;
+    font-size: 38px;
     margin-top: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     letter-spacing: -1px;
 }
 
 .ecosystem-text p {
-    font-size: 16px;
-    max-width: 580px;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 }
 
-/* Футуристичная пульсирующая интерактивная кнопка */
 .cta-pulse-button {
     background-color: var(--text-white);
     color: var(--bg-dark);
-    font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 16px;
-    padding: 18px 36px;
+    font-size: 15px;
+    padding: 16px 32px;
     border: none;
-    border-radius: 16px;
+    border-radius: 14px;
     cursor: pointer;
-    position: relative;
     transition: all 0.3s ease;
 }
 
 .cta-pulse-button:hover {
     background-color: var(--neon-yellow);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(255, 221, 45, 0.2);
 }
 
-/* Адаптивность для смартфонов */
+/* АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ */
 @media (max-width: 1024px) {
     .header {
-        padding: 24px;
+        padding: 16px 20px;
     }
-    .nav-menu {
-        display: none; /* Прячем меню на смартфонах */
+    .nav-menu, .time-tag {
+        display: none; /* Скрываем лишнее на телефонах */
+    }
+    .page-wrapper {
+        padding-top: 100px;
+        gap: 40px; /* Уменьшаем зазоры на мобилках */
     }
     .main-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Всё выстраивается строго в 1 колонку */
         gap: 16px;
-        margin: 0 auto;
-    }
-    #hero {
-        padding-top: 120px;
-    }
-    .section-margin {
-        margin-top: 40px;
     }
     .title-box, .visual-box, .info-card-large, .info-card-small, .rate-card, .ecosystem-visual, .ecosystem-text {
-        grid-column: span 1fr;
+        grid-column: span 1fr !important;
     }
-    h1 { font-size: 36px; }
-    .rate-card { min-height: auto; }
-    .ecosystem-text h2 { font-size: 28px; }
-    .coin-3d-wrapper { margin-right: 0; }
+    .title-box {
+        padding-left: 0;
+    }
+    h1 {
+        font-size: 32px;
+    }
+    .visual-box, .ecosystem-visual {
+        height: 320px;
+    }
+    .coin-3d-wrapper {
+        margin-right: 0;
+    }
+    .ecosystem-text h2 {
+        font-size: 26px;
+    }
 }
