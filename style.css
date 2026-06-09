@@ -1,4 +1,3 @@
-/* Сброс стилей */
 * {
     margin: 0;
     padding: 0;
@@ -22,21 +21,21 @@ body {
     position: relative;
 }
 
-/* Размытый неон на фоне */
+/* Параллакс-сферы с плавным движением */
 .glow-sphere {
     position: absolute;
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,221,45,0.07) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(255,221,45,0.06) 0%, rgba(0,0,0,0) 70%);
     filter: blur(80px);
     z-index: 0;
     pointer-events: none;
+    transition: transform 0.1s ease-out; /* Плавный доводчик за мышкой */
 }
 .sphere-1 { top: -200px; right: -100px; }
 .sphere-2 { bottom: -100px; left: -200px; }
 
-/* Шапка */
 .header {
     display: flex;
     justify-content: space-between;
@@ -45,6 +44,7 @@ body {
     border-bottom: 1px solid var(--border-color);
     z-index: 10;
     position: relative;
+    animation: fadeInDown 0.8s ease forwards;
 }
 
 .logo {
@@ -70,15 +70,16 @@ body {
     border-radius: 100px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .action-trigger:hover {
     background: var(--text-white);
     color: var(--bg-dark);
+    transform: scale(1.05);
 }
 
-/* Дизайнерская сетка */
+/* Сетка */
 .main-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -88,6 +89,7 @@ body {
     padding: 0 4%;
     position: relative;
     z-index: 5;
+    animation: fadeInUp 1s ease forwards;
 }
 
 .grid-item {
@@ -96,9 +98,33 @@ body {
     border-radius: 32px;
     padding: 40px;
     backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s ease, background-color 0.4s ease;
 }
 
-/* Главный текст */
+/* Эффект интерактивных карточек */
+.interactive-hover:hover {
+    border-color: rgba(255, 221, 45, 0.2);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Скрытая неоновая линия под карточкой, которая выезжает при ховере */
+.glow-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-yellow), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.interactive-hover:hover .glow-line {
+    transform: scaleX(1);
+}
+
 .title-box {
     grid-column: span 7;
     background: transparent;
@@ -129,24 +155,29 @@ h1 {
     max-width: 540px;
 }
 
-/* Контейнер для 3D Карты */
 .visual-box {
     grid-column: span 5;
     height: 480px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%);
-    overflow: hidden;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.02) 0%, transparent 70%);
 }
 
 .visual-box model-viewer {
     width: 100%;
     height: 100%;
     outline: none;
+    --poster-color: transparent;
+    background: transparent;
+    transition: transform 0.3s ease;
 }
 
-/* Карточки нижнего ряда */
+/* При наведении на блок с 3D картой, она слегка увеличивается */
+.visual-box:hover model-viewer {
+    transform: scale(1.05);
+}
+
 .info-card-large {
     grid-column: span 7;
     display: flex;
@@ -161,7 +192,7 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     min-height: 260px;
-    background: linear-gradient(135deg, rgba(255,221,45,0.03) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(255,221,45,0.01) 0%, transparent 100%);
 }
 
 .card-header-flex {
@@ -171,12 +202,11 @@ h1 {
     width: 100%;
 }
 
-/* Адаптивный блок для 3D монеты внутри карточки */
 .coin-3d-wrapper {
-    width: 90px;
-    height: 90px;
-    margin-top: -15px;
-    margin-right: -15px;
+    width: 100px;
+    height: 100px;
+    margin-top: -20px;
+    margin-right: -100px;
 }
 
 .coin-3d-wrapper model-viewer {
@@ -184,6 +214,7 @@ h1 {
     height: 100%;
     outline: none;
     --poster-color: transparent;
+    background: transparent;
 }
 
 .card-num {
@@ -210,7 +241,29 @@ h3 {
     line-height: 1.6;
 }
 
-/* Адаптивность для мобильных */
+/* Красивые анимации появления при входе на сайт */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @media (max-width: 1024px) {
     .main-grid {
         grid-template-columns: 1fr;
@@ -240,7 +293,8 @@ h3 {
     }
     
     .coin-3d-wrapper {
-        width: 70px;
-        height: 70px;
+        margin-right: 0;
+        width: 80px;
+        height: 80px;
     }
 }
