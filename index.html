@@ -3,130 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Т — Архитектура Возможностей</title>
+    <title>Презентация продукта</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
 </head>
 <body>
 
-    <div class="bg-glow sphere-1"></div>
-    <div class="bg-glow sphere-2"></div>
-
-    <header class="header">
-        <a href="#" class="logo">т.интерфейс</a>
-        <nav class="nav-menu">
-            <a href="#hero">Продукт</a>
-            <a href="#features">Преимущества</a>
-            <a href="#rates">Тарифы</a>
-            <a href="#ecosystem">Экосистема</a>
-        </nav>
-        <button class="action-trigger">Выпустить</button>
-    </header>
-
     <div class="container">
-
-        <section id="hero" class="block-row">
-            <div class="block-text">
-                <h1>Меньше слов.<br>Больше <span class="text-stroke">цифры</span>.</h1>
-                <p class="manifesto">
-                    Мы убрали из банкинга всё лишнее. Оставили только чистую скорость, прозрачный кэшбэк и тяжелый пластик, который приятно держать в руках. Без скрытых условий.
-                </p>
-            </div>
-            <div class="block-visual">
-                <div class="canvas-window">
-                    <model-viewer
-                        src="card.glb" 
-                        camera-controls
-                        auto-rotate
-                        interaction-prompt="none"
-                        shadow-intensity="0"
-                        exposure="1.5"
-                        camera-orbit="45deg 55deg auto"
-                        auto-rotate-delay="0"
-                        disable-zoom>
-                    </model-viewer>
-                </div>
-            </div>
-        </section>
-
-        <section id="features" class="block-row reverse">
-            <div class="block-text">
-                <span class="block-tag">01 // Кэшбэк</span>
-                <h2>Честные 15% на всё, что важно</h2>
-                <p>Вы сами выбираете четыре категории кэшбэка каждый месяц. Возвращаем реальными деньгами на счет, а не виртуальными фантиками. Никаких скрытых лимитов.</p>
-            </div>
-            <div class="block-visual">
-                <div class="canvas-window size-coin">
-                    <model-viewer
-                        src="coin.glb" 
-                        auto-rotate
-                        rotation-per-second="45deg"
-                        interaction-prompt="none"
-                        shadow-intensity="0"
-                        exposure="1.3"
-                        camera-orbit="0deg 90deg auto"
-                        disable-zoom
-                        disable-pan>
-                    </model-viewer>
-                </div>
-            </div>
-        </section>
-
-        <section id="rates" class="rates-section">
-            <div class="rate-card">
-                <span class="badge">Стандарт</span>
-                <h3>Т.Пластик</h3>
-                <p class="price">0 ₽<span>/мес</span></p>
-                <div class="divider"></div>
-                <ul>
-                    <li>Бесплатное обслуживание</li>
-                    <li>Кэшбэк до 15%</li>
-                    <li>Снятие без комиссии</li>
-                </ul>
+        
+        <div class="left">
+            <span class="brand-tag">т.интерфейс</span>
+            <h1>Меньше слов.<br>Больше цифры.</h1>
+            <p>
+                Мы убрали из банкинга всё лишнее. Оставили только чистую скорость, прозрачный кэшбэк и тяжелый пластик, который приятно держать в руках. Без скрытых условий.
+            </p>
+            <button class="main-button">Выпустить карту</button>
+        </div>
+        
+        <div class="right">
+            
+            <div class="model-switcher">
+                <button id="btn-card" class="switch-btn active">Карта</button>
+                <button id="btn-coin" class="switch-btn">Монета</button>
             </div>
 
-            <div class="rate-card premium">
-                <span class="badge yellow">Titanium</span>
-                <h3>Т.Премиум</h3>
-                <p class="price">1 990 ₽<span>/мес</span></p>
-                <div class="divider"></div>
-                <ul>
-                    <li>Выделенная линия 24/7</li>
-                    <li>Бизнес-залы в аэропортах</li>
-                    <li>Повышенный доход по вкладам</li>
-                </ul>
-            </div>
-        </section>
+            <model-viewer
+                id="view-card"
+                src="card.glb"
+                camera-controls
+                auto-rotate
+                interaction-prompt="none"
+                exposure="1.3">
+            </model-viewer>
 
-        <section id="ecosystem" class="block-row">
-            <div class="block-text">
-                <span class="block-tag">02 // Инфраструктура</span>
-                <h2>Единый цифровой ключ</h2>
-                <p>Это больше, чем карта. Это терминал доступа к инвестициям, мобильной связи нового поколения и защищенным сейфам для хранения ваших активов.</p>
-                <button class="cta-btn">Запустить процесс</button>
-            </div>
-            <div class="block-visual">
-                <div class="canvas-window">
-                    <model-viewer
-                        src="device.glb" 
-                        camera-controls
-                        auto-rotate
-                        interaction-prompt="none"
-                        shadow-intensity="0"
-                        exposure="1.4"
-                        camera-orbit="35deg 75deg auto"
-                        disable-zoom>
-                    </model-viewer>
-                </div>
-            </div>
-        </section>
+            <model-viewer
+                id="view-coin"
+                src="coin.glb"
+                camera-controls
+                auto-rotate
+                interaction-prompt="none"
+                exposure="1.2"
+                style="display: none;">
+            </model-viewer>
 
+        </div>
     </div>
 
+    <script>
+        const btnCard = document.getElementById('btn-card');
+        const btnCoin = document.getElementById('btn-coin');
+        const viewCard = document.getElementById('view-card');
+        const viewCoin = document.getElementById('view-coin');
+
+        btnCard.addEventListener('click', () => {
+            btnCard.classList.add('active');
+            btnCoin.classList.remove('active');
+            viewCard.style.display = 'block';
+            viewCoin.style.display = 'none';
+        });
+
+        btnCoin.addEventListener('click', () => {
+            btnCoin.classList.add('active');
+            btnCard.classList.remove('active');
+            viewCard.style.style.display = 'none';
+            viewCoin.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
