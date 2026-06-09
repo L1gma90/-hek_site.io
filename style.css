@@ -1,3 +1,4 @@
+/* Сброс стилей */
 * {
     margin: 0;
     padding: 0;
@@ -12,6 +13,10 @@
     --border-color: rgba(255, 255, 255, 0.08);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-dark);
     color: var(--text-white);
@@ -21,21 +26,41 @@ body {
     position: relative;
 }
 
+/* Навигационное меню в шапке */
+.nav-menu {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-menu a {
+    color: var(--text-gray);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    color: var(--text-white);
+}
+
 /* Параллакс-сферы с плавным движением */
 .glow-sphere {
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,221,45,0.06) 0%, rgba(0,0,0,0) 70%);
-    filter: blur(80px);
+    background: radial-gradient(circle, rgba(255,221,45,0.05) 0%, rgba(0,0,0,0) 70%);
+    filter: blur(90px);
     z-index: 0;
     pointer-events: none;
-    transition: transform 0.1s ease-out; /* Плавный доводчик за мышкой */
+    transition: transform 0.1s ease-out;
 }
 .sphere-1 { top: -200px; right: -100px; }
-.sphere-2 { bottom: -100px; left: -200px; }
+.sphere-2 { top: 1200px; left: -200px; }
+.sphere-3 { bottom: -200px; right: 200px; background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0) 70%); }
 
+/* Шапка */
 .header {
     display: flex;
     justify-content: space-between;
@@ -44,7 +69,12 @@ body {
     border-bottom: 1px solid var(--border-color);
     z-index: 10;
     position: relative;
-    animation: fadeInDown 0.8s ease forwards;
+    background: rgba(10, 10, 12, 0.5);
+    backdrop-filter: blur(20px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .logo {
@@ -79,17 +109,28 @@ body {
     transform: scale(1.05);
 }
 
-/* Сетка */
+/* Сетка Grid */
 .main-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     gap: 24px;
     max-width: 1400px;
-    margin: 60px auto;
+    margin: 0 auto;
     padding: 0 4%;
     position: relative;
     z-index: 5;
-    animation: fadeInUp 1s ease forwards;
+}
+
+#hero {
+    padding-top: 180px;
+}
+
+.section-margin {
+    margin-top: 120px;
+}
+
+.footer-buffer {
+    padding-bottom: 140px;
 }
 
 .grid-item {
@@ -103,13 +144,11 @@ body {
     transition: border-color 0.4s ease, background-color 0.4s ease;
 }
 
-/* Эффект интерактивных карточек */
 .interactive-hover:hover {
-    border-color: rgba(255, 221, 45, 0.2);
+    border-color: rgba(255, 221, 45, 0.15);
     background: rgba(255, 255, 255, 0.02);
 }
 
-/* Скрытая неоновая линия под карточкой, которая выезжает при ховере */
 .glow-line {
     position: absolute;
     bottom: 0;
@@ -125,6 +164,7 @@ body {
     transform: scaleX(1);
 }
 
+/* Блок главного текста */
 .title-box {
     grid-column: span 7;
     background: transparent;
@@ -155,6 +195,7 @@ h1 {
     max-width: 540px;
 }
 
+/* Контейнеры для 3D */
 .visual-box {
     grid-column: span 5;
     height: 480px;
@@ -164,20 +205,20 @@ h1 {
     background: radial-gradient(circle at center, rgba(255,255,255,0.02) 0%, transparent 70%);
 }
 
-.visual-box model-viewer {
+model-viewer {
     width: 100%;
     height: 100%;
     outline: none;
     --poster-color: transparent;
     background: transparent;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
-/* При наведении на блок с 3D картой, она слегка увеличивается */
 .visual-box:hover model-viewer {
-    transform: scale(1.05);
+    transform: scale(1.03) rotate(-2deg);
 }
 
+/* Карточки Блока 2 */
 .info-card-large {
     grid-column: span 7;
     display: flex;
@@ -192,7 +233,6 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     min-height: 260px;
-    background: linear-gradient(135deg, rgba(255,221,45,0.01) 0%, transparent 100%);
 }
 
 .card-header-flex {
@@ -209,17 +249,9 @@ h1 {
     margin-right: -100px;
 }
 
-.coin-3d-wrapper model-viewer {
-    width: 100%;
-    height: 100%;
-    outline: none;
-    --poster-color: transparent;
-    background: transparent;
-}
-
 .card-num {
     font-family: 'Unbounded', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--neon-yellow);
     display: block;
 }
@@ -235,66 +267,159 @@ h3 {
     letter-spacing: -0.5px;
 }
 
-.grid-item p {
+p {
     color: var(--text-gray);
     font-size: 15px;
     line-height: 1.6;
 }
 
-/* Красивые анимации появления при входе на сайт */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* БЛОК 3: Дизайнерские карточки тарифов */
+.rate-card {
+    grid-column: span 6;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.rate-card h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 28px;
+    margin-top: 16px;
 }
 
+.rate-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.rate-badge {
+    font-family: monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    color: var(--text-gray);
+}
+
+.premium-badge {
+    color: var(--neon-yellow);
+    border-color: rgba(255, 221, 45, 0.3);
+    background: rgba(255, 221, 45, 0.02);
+}
+
+.rate-price {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 38px;
+    margin: 24px 0;
+}
+
+.rate-price span {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--text-gray);
+    font-weight: 400;
+}
+
+.rate-features {
+    list-style: none;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.rate-features li {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.rate-features li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--neon-yellow);
+}
+
+/* БЛОК 4: Экосистема */
+.ecosystem-visual {
+    grid-column: span 5;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ecosystem-text {
+    grid-column: span 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.ecosystem-text h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    letter-spacing: -1px;
+}
+
+.ecosystem-text p {
+    font-size: 16px;
+    max-width: 580px;
+    margin-bottom: 40px;
+}
+
+/* Футуристичная пульсирующая интерактивная кнопка */
+.cta-pulse-button {
+    background-color: var(--text-white);
+    color: var(--bg-dark);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 18px 36px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.cta-pulse-button:hover {
+    background-color: var(--neon-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 221, 45, 0.2);
+}
+
+/* Адаптивность для смартфонов */
 @media (max-width: 1024px) {
+    .header {
+        padding: 24px;
+    }
+    .nav-menu {
+        display: none; /* Прячем меню на смартфонах */
+    }
     .main-grid {
         grid-template-columns: 1fr;
         gap: 16px;
-        margin: 20px auto;
+        margin: 0 auto;
     }
-    
-    .title-box, .visual-box, .info-card-large, .info-card-small {
+    #hero {
+        padding-top: 120px;
+    }
+    .section-margin {
+        margin-top: 40px;
+    }
+    .title-box, .visual-box, .info-card-large, .info-card-small, .rate-card, .ecosystem-visual, .ecosystem-text {
         grid-column: span 1fr;
     }
-    
-    .title-box {
-        padding-left: 20px;
-    }
-
-    h1 {
-        font-size: 36px;
-    }
-
-    .visual-box {
-        height: 350px;
-    }
-    
-    .grid-item {
-        padding: 30px 20px;
-        border-radius: 24px;
-    }
-    
-    .coin-3d-wrapper {
-        margin-right: 0;
-        width: 80px;
-        height: 80px;
-    }
+    h1 { font-size: 36px; }
+    .rate-card { min-height: auto; }
+    .ecosystem-text h2 { font-size: 28px; }
+    .coin-3d-wrapper { margin-right: 0; }
 }
